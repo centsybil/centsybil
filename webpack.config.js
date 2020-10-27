@@ -1,12 +1,11 @@
-const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
-const argv = require('webpack-nano/argv');
-const { mode } = argv;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: ['./src/index.tsx', 'webpack-plugin-serve/client'],
-  mode: 'none',
+  entry: './src/index.tsx',
+  mode: process.env.NODE_ENV,
   output: {
-    path: __dirname + '/public/',
+    path: path.resolve(__dirname, 'public'),
     filename: 'index.js',
   },
   resolve: {
@@ -25,27 +24,26 @@ module.exports = {
               '@babel/preset-react',
               '@babel/preset-typescript',
             ],
-            plugins: [
-              new Serve({
-                middleware: (app, builtins) => {
-                  app.use(
-                    builtins.proxy('/', {
-                      target: 'http://localhost:3000',
-                    })
-                  );
-                },
-              }),
-            ],
           },
         },
       },
     ],
   },
-  // devServer: {
-  //   //contentBase: path.resolve(__dirname, 'src'),
-  //   historyApiFallback: true,
-  //   publicPath: 'public',
-  //   compress: true,
-  //   proxy: { '/': 'http://localhost:3000' },
-  // },
+  plugins: [
+    new HtmlWebpackPlugin({
+      hash: true, // This is useful for cache busting
+      filename: './public/index.html',
+    }),
+  ],
+  devServer: {
+    historyApiFallback: true,
+    publicPath: '/public/',
+    hot: true,
+    compress: true,
+    watchContentBase: true,
+    watchOptions: {
+      ignored: /node_modules/,
+    },
+    proxy: { '/': 'http://localhost:3000' },
+  },
 };
