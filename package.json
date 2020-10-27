@@ -21,10 +21,13 @@
   },
   "homepage": "https://github.com/centsybil/centsybil#readme",
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "pg": "^8.4.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "^17.0.1",
+    "react-icons": "^3.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
