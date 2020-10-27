@@ -1,16 +1,16 @@
-export interface BudgetItem {
+export interface BudgetItemType {
   name: string;
   price: number;
   date: string;
 }
-export interface Budget {
+export interface BudgetType {
   budgetName: string;
   budgetMax: number;
   budgetWarning: number;
   currTotal: number;
-  budgetItems: BudgetItem[];
+  budgetItems: BudgetItemType[];
 }
-export interface BudgetData {
+export interface BudgetDataType {
   username: string;
-  budgetsArr: Budget[];
+  budgetsArr: BudgetType[];
 }
