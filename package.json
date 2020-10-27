@@ -1,0 +1,52 @@
+{
+  "name": "centsybil",
+  "version": "1.0.0",
+  "description": "Intelligent automated budget tracking",
+  "main": "./src/index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production webpack & node src/server/server.ts",
+    "dev": "NODE_ENV=development webpack serve & nodemon src/server/server.ts",
+    "compile": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/centsybil/centsybil.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/centsybil/centsybil/issues"
+  },
+  "homepage": "https://github.com/centsybil/centsybil#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "express": "^4.17.1",
+    "pg": "^8.4.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
+    "@types/express": "^4.17.8",
+    "@types/pg": "^7.14.5",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
+    "@types/webpack": "^4.41.23",
+    "@types/webpack-dev-server": "^3.11.0",
+    "@webpack-cli/serve": "^1.0.1",
+    "babel-loader": "^8.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "nodemon": "^2.0.6",
+    "ts-loader": "^8.0.7",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
