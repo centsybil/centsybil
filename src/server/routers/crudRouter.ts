@@ -1,38 +1,34 @@
 import express from 'express';
-const crudController = require('../controllers/crudController');
+const catController = require('../controllers/catController');
+const transController = require('../controllers/transController');
 const router = express.Router();
 const path = require('path');
 
 //Login is successful
 
-//Update/edit Total Budget
-router.put('/', crudController.updateTotal, (req, res) => {
-  res.status(200).json({ verified: res.locals.status });
-});
-
 //Category Routes
-router.post('/cat', crudController.addCat, (req, res) => {
+router.post('/cat', catController.addCat, (req, res) => {
   res.status(200).json({ verified: res.locals.status });
 });
 
-router.put('/cat', crudController.updateCat, (req, res) => {
+router.put('/cat', catController.updateCat, (req, res) => {
   res.status(200).json({ verified: res.locals.status });
 });
 
-router.delete('/cat', crudController.deleteCat, (req, res) => {
+router.delete('/cat', catController.deleteCat, (req, res) => {
   res.status(200).json({ verified: res.locals.status });
 });
 
 //Transactions Routes
-router.post('/trans', crudController.addTrans, (req, res) => {
+router.post('/trans', transController.addTrans, (req, res) => {
   res.status(200).json({ verified: res.locals.status });
 });
 
-router.put('/trans', crudController.updateTrans, (req, res) => {
+router.put('/trans', transController.updateTrans, (req, res) => {
   res.status(200).json({ verified: res.locals.status });
 });
 
-router.delete('/trans', crudController.deleteTrans, (req, res) => {
+router.delete('/trans', transController.deleteTrans, (req, res) => {
   res.status(200).json({ verified: res.locals.status });
 });
 
