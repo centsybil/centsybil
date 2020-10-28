@@ -9,13 +9,14 @@ const catController: catControllerType = {
     res: express.Response,
     next: express.NextFunction
   ) => {
-    const { id, budgetName, budgetMax } = req.body;
+    const { userId, budgetName, budgetMax } = req.body;
     const query: string =
-      'INSERT INTO categories (name, amount) VALUES ($1, $2) RETURNING * WHERE id = $3';
-    const values: string[] | number[] = [budgetName, budgetMax, id];
+      'INSERT INTO categories (name, amount, userid) VALUES ($1, $2, $3);';
+    const values: string[] | number[] = [budgetName, budgetMax, userId];
     db.query(query, values)
-      .then((data: any) => {
-        res.locals.categories = data.rows;
+      .then(() => {
+        // console.log(data.rows)
+        // res.locals.categories = data.rows;
         return next();
       })
       .catch((error: string) => {
@@ -33,13 +34,13 @@ const catController: catControllerType = {
     res: express.Response,
     next: express.NextFunction
   ) => {
-    const { id, budgetName, budgetMax } = req.body;
+    const { catId, budgetName, budgetMax } = req.body;
     const query: string =
-      'INSERT INTO categories (name, amount) VALUES ($1, $2) RETURNING * WHERE id = $3';
-    const values: string[] | number[] = [budgetName, budgetMax, id];
+      'UPDATE categories SET name = $1, amount = $2  WHERE catid = $3;';
+    const values: string[] | number[] = [budgetName, budgetMax, catId];
     db.query(query, values)
-      .then((data: any) => {
-        res.locals.categories = data.rows;
+      .then(() => {
+        // res.locals.categories = data.rows;
         return next();
       })
       .catch((error: string) => {

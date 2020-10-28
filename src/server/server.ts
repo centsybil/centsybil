@@ -4,6 +4,9 @@ const app: express.Application = express();
 const authRouter = require('./routers/authRouter');
 const crudRouter = require('./routers/crudRouter');
 
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 //serve static files
 app.use(express.static('public'));
 

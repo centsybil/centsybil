@@ -8,12 +8,12 @@ const path = require('path');
 
 //Category Routes
 router.post('/cat', catController.addCat, (req, res) => {
-  res.status(200).json(res.locals.categories);
+  res.status(200).json('made itttt');
 });
 
-// router.put('/cat', catController.updateCat, (req, res) => {
-//   res.status(200).json({ verified: res.locals.status });
-// });
+router.put('/cat', catController.updateCat, (req, res) => {
+  res.status(200).json('againnnnn');
+});
 
 // router.delete('/cat', catController.deleteCat, (req, res) => {
 //   res.status(200).json({ verified: res.locals.status });
