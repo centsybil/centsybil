@@ -20,16 +20,16 @@ router.delete('/cat', catController.deleteCat, (req, res) => {
 });
 
 // //Transactions Routes
-// router.post('/trans', transController.addTrans, (req, res) => {
-//   res.status(200).json({ verified: res.locals.status });
-// });
+router.post('/trans', transController.addTrans, (req, res) => {
+  res.status(200).json('we here');
+});
 
-// router.put('/trans', transController.updateTrans, (req, res) => {
-//   res.status(200).json({ verified: res.locals.status });
-// });
+router.put('/trans', transController.updateTrans, (req, res) => {
+  res.status(200).json('who woulda thought');
+});
 
-// router.delete('/trans', transController.deleteTrans, (req, res) => {
-//   res.status(200).json({ verified: res.locals.status });
-// });
+router.delete('/trans', transController.deleteTrans, (req, res) => {
+  res.status(200).json('not meeee');
+});
 
 module.exports = router;
