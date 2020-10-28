@@ -10,7 +10,7 @@ const catController: catControllerType = {
   ) => {
     const { userId, budgetName, budgetMax } = req.body;
     const query: string =
-      'INSERT INTO categories (name, amount, userid) VALUES ($1, $2, $3);';
+      'INSERT INTO categories (catName, catAmount, userid) VALUES ($1, $2, $3);';
     const values: string[] | number[] = [budgetName, budgetMax, userId];
     db.query(query, values)
       .then(() => {
@@ -35,7 +35,7 @@ const catController: catControllerType = {
   ) => {
     const { catId, budgetName, budgetMax } = req.body;
     const query: string =
-      'UPDATE categories SET name = $1, amount = $2  WHERE catid = $3;';
+      'UPDATE categories SET catName = $1, catAmount = $2  WHERE catid = $3;';
     const values: string[] | number[] = [budgetName, budgetMax, catId];
     db.query(query, values)
       .then(() => {
