@@ -17,7 +17,16 @@ export interface transControllerType {
   deleteTrans: any;
 }
 
-// export interface dataType {
-//   queryData: string;
-//   queryStatistics: string;
-// }
+export interface authControllerType {
+  addUser: any;
+  verifyUser: any;
+  fetchData: any;
+}
+
+
+//global error interface
+export interface errObj {
+  log: string;
+  status: number;
+  message: { err: string };
+}

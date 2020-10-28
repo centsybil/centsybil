@@ -2,9 +2,9 @@ import express from 'express';
 const catController = require('../controllers/catController');
 const transController = require('../controllers/transController');
 const router = express.Router();
-const path = require('path');
 
-//Login is successful
+
+
 
 //Category Routes
 router.post('/cat', catController.addCat, (req, res) => {
