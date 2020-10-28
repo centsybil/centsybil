@@ -12,22 +12,21 @@ router.get('/', (req, res) => {
 
 router.post(
   '/signup',
-  /* authController.signup,
-  authController.verify,*/
-  authController.fetchData,
+  authController.addUser,
+  //authController.fetchData,
   (req, res) => {
-    res.status(200).json({ verified: res.locals.status });
+    res.status(200).json('testinggg');
   }
 );
 
 router.post(
   '/login',
-  authController.verify,
-  authController.fetchData,
+  authController.verifyUser,
+  //authController.fetchData,
   (req, res) => {
     res
       .status(200)
-      .json({ verified: res.locals.status, incorrect: res.locals.incorrect });
+      .send('it workssssssss');
   }
 );
 

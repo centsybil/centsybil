@@ -38,7 +38,7 @@ const authController: authControllerType = {
     next: express.NextFunction
   ) => {
     const { username, password } = req.body;
-    const query: string = 'SELECT * SET FROM users WHERE username=($1);';
+    const query: string = 'SELECT * FROM users WHERE username=($1);';
     const values: string[] | number[] = [username];
     db.query(query, values)
       .then((data: any) => {
@@ -47,16 +47,25 @@ const authController: authControllerType = {
           return next();
         } else {
           const retrievedHash = data.rows[0]['password'];
-          bcrypt.compare(password, retrievedHash, (err, verify) => {
+          
+          bcrypt.compare(password, retrievedHash, (error: string, verify:any) => {
             if (verify === true) {
               return next();
-            } else {
+            } 
+            if (error) {
+              next({
+                log:
+                  'Express error handler caught unknown middleware error in authController verifyUser',
+                status: 400,
+                message: { err: error },
+              });
+            }
+            else {
               res.locals.incorrect = 'Incorrect Password';
               return next();
             }
           });
         }
-        return next();
       })
       .catch((error: string) => {
         next({
