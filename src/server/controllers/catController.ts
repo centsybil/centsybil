@@ -1,12 +1,11 @@
 import express from 'express';
 const db = require('../db/dbModel');
-const path = require('path');
 import { catControllerType } from '../../types.d';
 
 const catController: catControllerType = {
   addCat: (
     req: express.Request,
-    res: express.Response,
+    res: express.Request,
     next: express.NextFunction
   ) => {
     const { userId, budgetName, budgetMax } = req.body;
@@ -24,14 +23,14 @@ const catController: catControllerType = {
           log:
             'Express error handler caught unknown middleware error in catController addCat',
           status: 400,
-          message: { err: 'An error occured' },
+          message: { err: error },
         });
       });
   },
 
   updateCat: (
     req: express.Request,
-    res: express.Response,
+    res: express.Request,
     next: express.NextFunction
   ) => {
     const { catId, budgetName, budgetMax } = req.body;
@@ -48,14 +47,14 @@ const catController: catControllerType = {
           log:
             'Express error handler caught unknown middleware error in catController addCat',
           status: 400,
-          message: { err: 'An error occured' },
+          message: { err: error },
         });
       });
   },
 
   deleteCat: (
     req: express.Request,
-    res: express.Response,
+    res: express.Request,
     next: express.NextFunction
   ) => {
     const { catId } = req.body;
@@ -72,7 +71,7 @@ const catController: catControllerType = {
           log:
             'Express error handler caught unknown middleware error in catController addCat',
           status: 400,
-          message: { err: 'An error occured' },
+          message: { err: error },
         });
       });
   },
