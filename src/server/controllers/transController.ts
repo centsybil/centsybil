@@ -5,7 +5,7 @@ import { transControllerType } from '../../types.d';
 const transController: transControllerType = {
   addTrans: (
     req: express.Request,
-    res: express.Request,
+    res: express.Response,
     next: express.NextFunction
   ) => {
     const { catId, name, price, date } = req.body;
@@ -30,7 +30,7 @@ const transController: transControllerType = {
 
   updateTrans: (
     req: express.Request,
-    res: express.Request,
+    res: express.Response,
     next: express.NextFunction
   ) => {
     const { transId, name, price } = req.body;
@@ -54,12 +54,11 @@ const transController: transControllerType = {
 
   deleteTrans: (
     req: express.Request,
-    res: express.Request,
+    res: express.Response,
     next: express.NextFunction
   ) => {
     const { transId } = req.body;
-    const query: string =
-      'DELETE FROM transactions WHERE transId = $1;';
+    const query: string = 'DELETE FROM transactions WHERE transId = $1;';
     const values: number[] = [transId];
     db.query(query, values)
       .then(() => {
