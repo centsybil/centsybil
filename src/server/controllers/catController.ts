@@ -5,7 +5,7 @@ import { catControllerType } from '../../types.d';
 const catController: catControllerType = {
   addCat: (
     req: express.Request,
-    res: express.Request,
+    res: express.Response,
     next: express.NextFunction
   ) => {
     const { userId, budgetName, budgetMax } = req.body;
@@ -30,7 +30,7 @@ const catController: catControllerType = {
 
   updateCat: (
     req: express.Request,
-    res: express.Request,
+    res: express.Response,
     next: express.NextFunction
   ) => {
     const { catId, budgetName, budgetMax } = req.body;
@@ -54,12 +54,11 @@ const catController: catControllerType = {
 
   deleteCat: (
     req: express.Request,
-    res: express.Request,
+    res: express.Response,
     next: express.NextFunction
   ) => {
     const { catId } = req.body;
-    const query: string =
-      'DELETE FROM categories WHERE catId = $1;';
+    const query: string = 'DELETE FROM categories WHERE catId = $1;';
     const values: number[] = [catId];
     db.query(query, values)
       .then(() => {
