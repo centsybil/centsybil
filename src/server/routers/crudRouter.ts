@@ -8,28 +8,28 @@ const path = require('path');
 
 //Category Routes
 router.post('/cat', catController.addCat, (req, res) => {
-  res.status(200).json({ verified: res.locals.status });
+  res.status(200).json(res.locals.categories);
 });
 
-router.put('/cat', catController.updateCat, (req, res) => {
-  res.status(200).json({ verified: res.locals.status });
-});
+// router.put('/cat', catController.updateCat, (req, res) => {
+//   res.status(200).json({ verified: res.locals.status });
+// });
 
-router.delete('/cat', catController.deleteCat, (req, res) => {
-  res.status(200).json({ verified: res.locals.status });
-});
+// router.delete('/cat', catController.deleteCat, (req, res) => {
+//   res.status(200).json({ verified: res.locals.status });
+// });
 
-//Transactions Routes
-router.post('/trans', transController.addTrans, (req, res) => {
-  res.status(200).json({ verified: res.locals.status });
-});
+// //Transactions Routes
+// router.post('/trans', transController.addTrans, (req, res) => {
+//   res.status(200).json({ verified: res.locals.status });
+// });
 
-router.put('/trans', transController.updateTrans, (req, res) => {
-  res.status(200).json({ verified: res.locals.status });
-});
+// router.put('/trans', transController.updateTrans, (req, res) => {
+//   res.status(200).json({ verified: res.locals.status });
+// });
 
-router.delete('/trans', transController.deleteTrans, (req, res) => {
-  res.status(200).json({ verified: res.locals.status });
-});
+// router.delete('/trans', transController.deleteTrans, (req, res) => {
+//   res.status(200).json({ verified: res.locals.status });
+// });
 
 module.exports = router;

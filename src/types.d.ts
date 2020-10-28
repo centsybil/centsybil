@@ -5,19 +5,19 @@ export type MiddlewareFn = (
   next: NextFunction
 ) => void;
 
-export interface catController {
+export interface catControllerType {
   addCat: any;
   updateCat: any;
   deleteCat: any;
 }
 
-export interface transController {
+export interface transControllerType {
   addTrans: any;
   updateTrans: any;
   deleteTrans: any;
 }
 
-export interface dataType {
-  queryData: string;
-  queryStatistics: string;
-}
+// export interface dataType {
+//   queryData: string;
+//   queryStatistics: string;
+// }
