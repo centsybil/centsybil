@@ -1,7 +1,7 @@
 import express from 'express';
 const db = require('../db/dbModel');
 const path = require('path');
-import { catControllerType } from '../../types';
+import { catControllerType } from '../../types.d';
 
 const catController: catControllerType = {
   addCat: (
@@ -58,13 +58,13 @@ const catController: catControllerType = {
     res: express.Response,
     next: express.NextFunction
   ) => {
-    const { id, budgetName, budgetMax } = req.body;
+    const { catId } = req.body;
     const query: string =
-      'INSERT INTO categories (name, amount) VALUES ($1, $2) RETURNING * WHERE id = $3';
-    const values: string[] | number[] = [budgetName, budgetMax, id];
+      'DELETE FROM categories WHERE catId = $1;';
+    const values: number[] = [catId];
     db.query(query, values)
-      .then((data: any) => {
-        res.locals.categories = data.rows;
+      .then(() => {
+        // res.locals.categories = data.rows;
         return next();
       })
       .catch((error: string) => {

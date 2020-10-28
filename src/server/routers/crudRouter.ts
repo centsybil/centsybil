@@ -15,9 +15,9 @@ router.put('/cat', catController.updateCat, (req, res) => {
   res.status(200).json('againnnnn');
 });
 
-// router.delete('/cat', catController.deleteCat, (req, res) => {
-//   res.status(200).json({ verified: res.locals.status });
-// });
+router.delete('/cat', catController.deleteCat, (req, res) => {
+  res.status(200).json('yessirskiiiii');
+});
 
 // //Transactions Routes
 // router.post('/trans', transController.addTrans, (req, res) => {
