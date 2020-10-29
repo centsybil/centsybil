@@ -27,6 +27,25 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(jpg|jpeg|png|ttf|svg)$/,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                quality: 10,
+              },
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.s?css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   plugins: [
