@@ -1,9 +1,8 @@
+import { errObj } from './../types.d';
 import express from 'express';
-import path from 'path';
 const app: express.Application = express();
 const authRouter = require('./routers/authRouter');
 const crudRouter = require('./routers/crudRouter');
-
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -11,17 +10,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 //send to crud router
-app.use('/', crudRouter);
+// app.use('/', crudRouter);
 
 //send to auth router
-// app.use('/', authRouter)
+app.use('/', authRouter)
 
-//global error interface
-interface errObj {
-  log: string;
-  status: number;
-  message: { err: string };
-}
+
 
 //global error handler
 app.use((err: errObj, req: any, res: any, next: any) => {

@@ -1,17 +1,16 @@
 import express from 'express';
 const db = require('../db/dbModel');
-const path = require('path');
-import { catControllerType } from '../../types';
+import { catControllerType } from '../../types.d';
 
 const catController: catControllerType = {
   addCat: (
     req: express.Request,
-    res: express.Response,
+    res: express.Request,
     next: express.NextFunction
   ) => {
     const { userId, budgetName, budgetMax } = req.body;
     const query: string =
-      'INSERT INTO categories (name, amount, userid) VALUES ($1, $2, $3);';
+      'INSERT INTO categories (catName, catAmount, userid) VALUES ($1, $2, $3);';
     const values: string[] | number[] = [budgetName, budgetMax, userId];
     db.query(query, values)
       .then(() => {
@@ -24,19 +23,19 @@ const catController: catControllerType = {
           log:
             'Express error handler caught unknown middleware error in catController addCat',
           status: 400,
-          message: { err: 'An error occured' },
+          message: { err: error },
         });
       });
   },
 
   updateCat: (
     req: express.Request,
-    res: express.Response,
+    res: express.Request,
     next: express.NextFunction
   ) => {
     const { catId, budgetName, budgetMax } = req.body;
     const query: string =
-      'UPDATE categories SET name = $1, amount = $2  WHERE catid = $3;';
+      'UPDATE categories SET catName = $1, catAmount = $2  WHERE catid = $3;';
     const values: string[] | number[] = [budgetName, budgetMax, catId];
     db.query(query, values)
       .then(() => {
@@ -48,23 +47,23 @@ const catController: catControllerType = {
           log:
             'Express error handler caught unknown middleware error in catController addCat',
           status: 400,
-          message: { err: 'An error occured' },
+          message: { err: error },
         });
       });
   },
 
   deleteCat: (
     req: express.Request,
-    res: express.Response,
+    res: express.Request,
     next: express.NextFunction
   ) => {
-    const { id, budgetName, budgetMax } = req.body;
+    const { catId } = req.body;
     const query: string =
-      'INSERT INTO categories (name, amount) VALUES ($1, $2) RETURNING * WHERE id = $3';
-    const values: string[] | number[] = [budgetName, budgetMax, id];
+      'DELETE FROM categories WHERE catId = $1;';
+    const values: number[] = [catId];
     db.query(query, values)
-      .then((data: any) => {
-        res.locals.categories = data.rows;
+      .then(() => {
+        // res.locals.categories = data.rows;
         return next();
       })
       .catch((error: string) => {
@@ -72,7 +71,7 @@ const catController: catControllerType = {
           log:
             'Express error handler caught unknown middleware error in catController addCat',
           status: 400,
-          message: { err: 'An error occured' },
+          message: { err: error },
         });
       });
   },
