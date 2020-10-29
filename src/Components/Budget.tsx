@@ -8,9 +8,11 @@ interface BudgetPropsType {
 }
 
 function Budget({ singleBudgetData }: BudgetPropsType) {
-  const budgetItems = singleBudgetData.budgetItems.map((item) => {
-    return <BudgetItem singleItemData={item} />;
-  });
+  const budgetItems = singleBudgetData.budgetItems.length
+    ? singleBudgetData.budgetItems.map((item) => {
+        return <BudgetItem singleItemData={item} />;
+      })
+    : [];
 
   function colorCalculator(total, max) {
     const percent = total / max;
@@ -36,7 +38,7 @@ function Budget({ singleBudgetData }: BudgetPropsType) {
       red = 0;
       green = 230;
     }
-    return `rgb(${red}, ${green}, 0)`;
+    return `rgb(${red}, ${green}, 69)`;
   }
 
   return (
