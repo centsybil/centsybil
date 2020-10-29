@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import { createBootstrapComponent } from 'react-bootstrap/esm/ThemeProvider';
 import { Context } from '../ContextProvider';
 function AddBudgetModal() {
   const [show, setShow] = useState(false);
@@ -85,7 +84,6 @@ function AddBudgetModal() {
                 min={0}
                 max={100}
                 value={budgetSpendPercent}
-                style={{ backgroundColor: 'red' }}
               />
             </Form.Group>
           </Form>
