@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BudgetsView from './Components/BudgetsView';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import dummyData from './dummyData.js';
-
+import { Context } from './ContextProvider';
 function App() {
+  const { userData } = useContext(Context);
   return (
     <>
       <Navbar bg='primary' variant='dark'>
@@ -14,7 +14,7 @@ function App() {
           <Nav.Link href='#logout'>Logout</Nav.Link>
         </Nav>
       </Navbar>
-      <BudgetsView budgetData={dummyData} />;
+      <BudgetsView budgetData={userData} />;
     </>
   );
 }

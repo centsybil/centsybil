@@ -8,9 +8,11 @@ interface BudgetPropsType {
 }
 
 function Budget({ singleBudgetData }: BudgetPropsType) {
-  const budgetItems = singleBudgetData.budgetItems.map((item) => {
-    return <BudgetItem singleItemData={item} />;
-  });
+  const budgetItems = singleBudgetData.budgetItems.length
+    ? singleBudgetData.budgetItems.map((item) => {
+        return <BudgetItem singleItemData={item} />;
+      })
+    : [];
 
   function colorCalculator(total, max) {
     const percent = total / max;
@@ -46,10 +48,7 @@ function Budget({ singleBudgetData }: BudgetPropsType) {
         <h3 className='d-inline'>
           <span
             style={{
-              color: colorCalculator(
-                singleBudgetData.currTotal,
-                singleBudgetData.budgetMax
-              ),
+              color: colorCalculator(singleBudgetData.currTotal, singleBudgetData.budgetMax),
             }}
           >
             ${singleBudgetData.currTotal}
