@@ -1,0 +1,10 @@
+@import './custom.scss';
+$primary: #748bdb;
+
+.budget-title {
+  transition: 300ms;
+  &:hover {
+    color: $primary;
+    cursor: pointer;
+  }
+}

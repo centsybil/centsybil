@@ -3,12 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import { createBootstrapComponent } from 'react-bootstrap/esm/ThemeProvider';
 import { Context } from '../ContextProvider';
 function AddBudgetModal() {
   const [show, setShow] = useState(false);
   const [budgetSpendPercent, setBudgetSpendPercent] = useState(65);
-  const [budgetAmountValue, setBudgetAmountValue] = useState('');
+  const [budgetAmountValue, setBudgetAmountValue] = useState(0);
   const [budgetNameValue, setBudgetNameValue] = useState('');
   const { createBudget } = useContext(Context);
   const handleClose = () => setShow(false);
@@ -18,7 +17,7 @@ function AddBudgetModal() {
     setBudgetSpendPercent(e.target.value);
   }
   function handleBudgetAmountField(e: any) {
-    setBudgetAmountValue(e.target.value);
+    setBudgetAmountValue(parseInt(e.target.value));
   }
   function handleBudgetNameField(e: any) {
     setBudgetNameValue(e.target.value);
@@ -45,6 +44,7 @@ function AddBudgetModal() {
     <>
       <Button
         variant='primary'
+        block
         className='btn mt-4 center'
         onClick={handleShow}
       >

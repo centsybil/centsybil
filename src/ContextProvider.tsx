@@ -20,8 +20,28 @@ function ContextProvider(props) {
     setUserData(userDataCopy);
   };
 
+  const createBudgetItem = (price: number, name: string, budget: string) => {
+    console.log(price, name, budget);
+    const today = new Date();
+    const budgetItemObj = {
+      name,
+      price,
+      date: today.toString(),
+    };
+    const userDataCopy = Object.assign({}, userData);
+    for (let el of userDataCopy.budgetsArr) {
+      if (el.budgetName === budget) {
+        el.budgetItems.push(budgetItemObj);
+        break;
+      }
+    }
+    setUserData(userDataCopy);
+  };
+
   return (
-    <Context.Provider value={{ userData, setUserData, createBudget }}>
+    <Context.Provider
+      value={{ userData, setUserData, createBudget, createBudgetItem }}
+    >
       {props.children}
     </Context.Provider>
   );
