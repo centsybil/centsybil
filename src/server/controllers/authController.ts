@@ -19,6 +19,7 @@ const authController: authControllerType = {
         .then((data: any) => {
           // console.log(data.rows)
           res.locals.userid = data.rows[0]['userid'];
+          res.locals.username = username;
           return next();
         })
         .catch((error: string) => {
@@ -50,6 +51,8 @@ const authController: authControllerType = {
           
           bcrypt.compare(password, retrievedHash, (error: string, verify:any) => {
             if (verify === true) {
+              res.locals.userid = data.rows[0]['userid']
+              res.locals.username = username;
               return next();
             } 
             if (error) {
@@ -77,7 +80,7 @@ const authController: authControllerType = {
       });
   },
 
-  fetchData: (
+  fetchCat: (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
@@ -85,24 +88,51 @@ const authController: authControllerType = {
     if (res.locals.incorrect) {
       return next();
     }
-    const { catId } = req.body;
+    // const { userId } = req.body;
     const query: string =
-      'SELECT users.username, categories.catName, categories.catAmount, transactions.name, transactions.amount FROM users  INNER JOIN categories on users.userId = categories.userId INNER JOIN transactions on categories.catId = transactions.catId';
-    const values: number[] = [catId];
+      'SELECT * FROM categories WHERE userid = $1;';
+    const values: number[] = [res.locals.userId];
     db.query(query, values)
-      .then(() => {
-        // res.locals.categories = data.rows;
+      .then((data: any) => {
+         res.locals.categories = data.rows;
         return next();
       })
       .catch((error: string) => {
         next({
           log:
-            'Express error handler caught unknown middleware error in catController addCat',
+            'Express error handler caught unknown middleware error in authController fetchCat',
           status: 400,
           message: { err: error },
         });
       });
   },
+
+  fetchItems: (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    if (res.locals.incorrect) {
+      return next();
+    }
+    // const { userId } = req.body;
+    const query: string =
+      'SELECT * FROM transactions WHERE userid = $1;';
+    const values: number[] = [res.locals.userId];
+    db.query(query, values)
+      .then((data: any) => {
+         res.locals.items = data.rows;
+        return next();
+      })
+      .catch((error: string) => {
+        next({
+          log:
+            'Express error handler caught unknown middleware error in authController fetchItems',
+          status: 400,
+          message: { err: error },
+        });
+      });
+  }
 };
 
 module.exports = authController;

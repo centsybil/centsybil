@@ -23,6 +23,7 @@
   "homepage": "https://github.com/centsybil/centsybil#readme",
   "dependencies": {
     "axios": "^0.21.0",
+    "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "pg": "^8.4.2",

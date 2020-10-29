@@ -20,7 +20,8 @@ export interface transControllerType {
 export interface authControllerType {
   addUser: any;
   verifyUser: any;
-  fetchData: any;
+  fetchCat: any;
+  fetchItems: any;
 }
 
 
