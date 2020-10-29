@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { createBootstrapComponent } from 'react-bootstrap/esm/ThemeProvider';
-
+import { Context } from '../ContextProvider';
 function AddBudgetModal() {
   const [show, setShow] = useState(false);
   const [budgetSpendPercent, setBudgetSpendPercent] = useState(65);
   const [budgetAmountValue, setBudgetAmountValue] = useState('');
   const [budgetNameValue, setBudgetNameValue] = useState('');
+  const { createBudget } = useContext(Context);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -24,18 +25,20 @@ function AddBudgetModal() {
   }
 
   function handleAddBudgetClick(e: any) {
-    axios
-      .post('/home/cat', {
-        userId: 1,
-        budgetMax: budgetAmountValue,
-        budgetName: budgetNameValue,
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //pass in the state below
+    createBudget(budgetNameValue, budgetAmountValue, budgetSpendPercent);
+    // axios
+    //   .post('/home/cat', {
+    //     userId: 1,
+    //     budgetMax: budgetAmountValue,
+    //     budgetName: budgetNameValue,
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
   return (
     <>
@@ -43,7 +46,7 @@ function AddBudgetModal() {
         Add Budget
       </Button>
 
-      <Modal show={show} onHide={handleClose} backdrop='static' keyboard={false}>
+      <Modal show={show} onHide={handleClose} keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Adding Budget</Modal.Title>
         </Modal.Header>
