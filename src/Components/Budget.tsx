@@ -38,7 +38,7 @@ function Budget({ singleBudgetData }: BudgetPropsType) {
       red = 0;
       green = 230;
     }
-    return `rgb(${red}, ${green}, 0)`;
+    return `rgb(${red}, ${green}, 69)`;
   }
 
   return (
@@ -48,7 +48,10 @@ function Budget({ singleBudgetData }: BudgetPropsType) {
         <h3 className='d-inline'>
           <span
             style={{
-              color: colorCalculator(singleBudgetData.currTotal, singleBudgetData.budgetMax),
+              color: colorCalculator(
+                singleBudgetData.currTotal,
+                singleBudgetData.budgetMax
+              ),
             }}
           >
             ${singleBudgetData.currTotal}

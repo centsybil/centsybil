@@ -27,22 +27,27 @@ function AddBudgetModal() {
   function handleAddBudgetClick(e: any) {
     //pass in the state below
     createBudget(budgetNameValue, budgetAmountValue, budgetSpendPercent);
-    // axios
-    //   .post('/home/cat', {
-    //     userId: 1,
-    //     budgetMax: budgetAmountValue,
-    //     budgetName: budgetNameValue,
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios
+      .post('/home/cat', {
+        userId: 1,
+        budgetMax: budgetAmountValue,
+        budgetName: budgetNameValue,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    handleClose();
   }
   return (
     <>
-      <Button variant='primary' className='btn mt-4 center' onClick={handleShow}>
+      <Button
+        variant='primary'
+        className='btn mt-4 center'
+        onClick={handleShow}
+      >
         Add Budget
       </Button>
 
@@ -70,7 +75,9 @@ function AddBudgetModal() {
               />
             </Form.Group>
             <Form.Group controlId='formBasicRange'>
-              <Form.Label>Warn me when spending exceeds {budgetSpendPercent}%</Form.Label>
+              <Form.Label>
+                Warn me when spending exceeds {budgetSpendPercent}%
+              </Form.Label>
               <Form.Control
                 onChange={(e) => handleBudgetSpendPercentSlider(e)}
                 type='range'
@@ -86,7 +93,11 @@ function AddBudgetModal() {
           <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button variant='primary' type='submit' onClick={handleAddBudgetClick}>
+          <Button
+            variant='primary'
+            type='submit'
+            onClick={handleAddBudgetClick}
+          >
             Add Budget
           </Button>
         </Modal.Footer>

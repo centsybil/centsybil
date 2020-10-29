@@ -5,7 +5,7 @@ const Context = createContext();
 
 function ContextProvider(props) {
   const [userData, setUserData] = useState(dummyData);
-  const createBudget = (name, max, budgetWarning) => {
+  const createBudget = (name: string, max: number, budgetWarning: number) => {
     console.log('im here: ', name, max, budgetWarning);
     const budgetObj = {
       budgetName: name,
@@ -14,7 +14,7 @@ function ContextProvider(props) {
       budgetWarning,
       budgetItems: [],
     };
-    const userDataCopy = Object.assign(userData);
+    const userDataCopy = Object.assign({}, userData);
     userDataCopy.budgetsArr.push(budgetObj);
     console.log(userDataCopy, 'here');
     setUserData(userDataCopy);
