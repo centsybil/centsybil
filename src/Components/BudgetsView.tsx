@@ -16,7 +16,7 @@ function BudgetsView({ budgetData }: BudgetsViewProps) {
 
   return (
     <>
-      <div className='container mt-4 center shadow p-4'>
+      <div className='container my-4 center shadow p-4'>
         <h1>My Budgets</h1>
         {budgets}
         <AddBudgetModal></AddBudgetModal>

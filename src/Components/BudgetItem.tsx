@@ -11,7 +11,7 @@ function BudgetItem({ singleItemData }: BudgetItemPropsType) {
     return formattedDate;
   }
   return (
-    <div className='d-flex justify-content-between shadow-sm py-2 px-4 m-5 rounded'>
+    <div className='d-flex justify-content-between align-items-center shadow-sm py-2 px-4 m-5 rounded'>
       <h2>{formatDate(singleItemData.date)}</h2>
       <h3>{singleItemData.name}</h3>
       <h2>${singleItemData.price}</h2>

@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 //send to crud router
-// app.use('/', crudRouter);
+app.use('/home', crudRouter);
 
 //send to auth router
 app.use('/', authRouter)
