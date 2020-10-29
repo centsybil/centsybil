@@ -13,21 +13,46 @@ router.get('/', (req, res) => {
 router.post(
   '/signup',
   authController.addUser,
-  //authController.fetchData,
+  authController.fetchCat,
+  authController.fetchItems,
   (req, res) => {
-    res.status(200).json('testinggg');
+    res.status(200).json({
+      username: res.locals.username,
+      budgetsArr: res.locals.categories,
+      budgetItems: res.locals.items,
+    });
   }
 );
 
 router.post(
   '/login',
   authController.verifyUser,
-  //authController.fetchData,
+  authController.fetchCat,
+  authController.fetchItems,
   (req, res) => {
     res
-      .status(200)
-      .send('it workssssssss');
+      .status(200).json({
+        username: res.locals.username,
+        budgetsArr: res.locals.categories,
+        budgetItems: res.locals.items,
+      });
+      
   }
 );
 
 module.exports = router;
+
+
+// .json({
+//   username: res.locals.username,
+//   budegtsArr: [
+//     {
+//     catName: res.locals.catName,
+//     catAmount: res.locals.catAmount,
+//     catId: res.locals.catId,
+//     budegetArr: {
+//       transName: res.locals.transName,
+//       transAmount: res.locals.transAmount,
+//     }
+//   }]
+//   });
